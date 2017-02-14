@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import net.minecraft.server.v1_9_R1.DataWatcherObject;
 import org.bukkit.EntityEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -870,6 +871,7 @@ public class ExtendedEntity<T extends org.bukkit.entity.Entity> {
     @SuppressWarnings("unchecked")
     public void setWatchedData(int index, Object value) {
     	net.minecraft.server.v1_11_R1.DataWatcher watcher = h().getDataWatcher();
+
         Field f;
         try {
             f = watcher.getClass().getDeclaredField("c");
@@ -878,6 +880,7 @@ public class ExtendedEntity<T extends org.bukkit.entity.Entity> {
             return;
         }
         f.setAccessible(true);
+
         HashMap<Integer, net.minecraft.server.v1_11_R1.DataWatcher.Item> map;
         try {
             map = (HashMap<Integer, net.minecraft.server.v1_11_R1.DataWatcher.Item>) f.get(watcher);
@@ -885,7 +888,9 @@ public class ExtendedEntity<T extends org.bukkit.entity.Entity> {
             e.printStackTrace();
             return;
         }
+
         net.minecraft.server.v1_11_R1.DataWatcher.Item item = map.get(index);
+
         if (item != null) {
             item.a((T) value);
         }
@@ -914,7 +919,9 @@ public class ExtendedEntity<T extends org.bukkit.entity.Entity> {
      * @return data, or def if not found
      */
     public <K> K getWatchedData(int index, Class<K> type, K def) {
+
     	net.minecraft.server.v1_11_R1.DataWatcher watcher = h().getDataWatcher();
+
         Field f;
         try {
             f = watcher.getClass().getDeclaredField("c");
@@ -923,14 +930,18 @@ public class ExtendedEntity<T extends org.bukkit.entity.Entity> {
             return def;
         }
         f.setAccessible(true);
+
         HashMap<Integer, net.minecraft.server.v1_11_R1.DataWatcher.Item> map;
         try {
             map = (HashMap<Integer, net.minecraft.server.v1_11_R1.DataWatcher.Item>) f.get(watcher);
+
         } catch (IllegalAccessException e) {
             e.printStackTrace();
             return def;
         }
+
         net.minecraft.server.v1_11_R1.DataWatcher.Item item = map.get(index);
+
         if (item == null) {
             return def;
         }

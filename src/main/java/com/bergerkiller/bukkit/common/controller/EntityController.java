@@ -3,6 +3,7 @@ package com.bergerkiller.bukkit.common.controller;
 import java.util.List;
 
 import net.minecraft.server.v1_11_R1.*;
+
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.HumanEntity;
@@ -348,6 +349,7 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
         EntityRef.updateBlockCollision(handle);
 
         // Fire tick calculation (check using block collision)
+
         final boolean isInWater = handle.isInWater(); // In water or raining
         if (handle.world.a(handle.getBoundingBox().shrink(0.001), Material.FIRE, handle) || (handle.world.a(handle.getBoundingBox().shrink(0.001), Material.LAVA, handle))) {
             onBurnDamage(1);
@@ -367,7 +369,9 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
         }
         if (isInWater && handle.fireTicks > 0) {
             entity.makeRandomSound(Sound.BLOCK_FIRE_EXTINGUISH, 0.7f, 1.6f);
+
             handle.fireTicks = -handle.getMaxFireTicks();
+
         }
     }
 
