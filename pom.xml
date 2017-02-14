@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.bergerkiller.bukkit</groupId>
     <artifactId>BKCommonLib</artifactId>
-    <version>1.70-SNAPSHOT</version>
+    <version>1.110-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>BKCommonLib</name>
@@ -13,9 +13,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.mcversion>v1_9_R1</project.mcversion>
-        <project.bversion>1.9-R0.1</project.bversion>
-        <project.cbversion>1.9-R0.1</project.cbversion>
+        <project.mcversion>v1_11_R1</project.mcversion>
+        <project.bversion>1.11.2-R0.1</project.bversion>
+        <project.cbversion>1.11.2-R0.1</project.cbversion>
         <project.stableversion>1.68</project.stableversion>
         <project.stableserver>1.8.9-R0.1</project.stableserver>
         <project.stabledate>30 June 2015</project.stabledate>
@@ -25,18 +25,18 @@
     <repositories>
         <!-- Repo for access to CraftBukkit -->
         <repository>
-          <id>spigot-repo</id>
-          <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <!-- Repo for access to Vault -->
         <repository>
             <id>vault-repo</id>
-            <url>http://nexus.theyeticave.net/content/repositories/pub_releases</url>
+            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
         <!-- Repo for access to ProtocolLib -->
         <repository>
-            <id>shadowvolt-repo</id>
-            <url>http://ci.shadowvolt.com/plugin/repository/everything/</url>
+            <id>dmulloy2-repo</id>
+            <url>http://repo.dmulloy2.net/content/groups/public/</url>
         </repository>
         <!-- Repo for access to Objenesis -->
         <repository>
@@ -56,8 +56,6 @@
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>${project.cbversion}-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot-1.9.2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>cglib</groupId>
@@ -73,8 +71,8 @@
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
             <artifactId>VaultAPI</artifactId>
-            <version>1.5</version>
-            <optional>true</optional>
+            <version>1.6</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.kellerkindt</groupId>
@@ -87,9 +85,7 @@
         <dependency>
             <groupId>com.comphenix.protocol</groupId>
             <artifactId>ProtocolLib</artifactId>
-            <version>3.7.0-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/ProtocolLib.jar</systemPath>
+            <version>4.2.1-SNAPSHOT</version>
             <optional>true</optional>
         </dependency>
         <dependency>

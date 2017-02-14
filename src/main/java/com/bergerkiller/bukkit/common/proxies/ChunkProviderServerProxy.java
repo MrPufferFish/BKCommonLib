@@ -1,8 +1,8 @@
 package com.bergerkiller.bukkit.common.proxies;
 
 import net.friwi.reflection.ChunkPosition;
-import net.minecraft.server.v1_9_R1.BiomeBase.BiomeMeta;
-import net.minecraft.server.v1_9_R1.*;
+import net.minecraft.server.v1_11_R1.BiomeBase.BiomeMeta;
+import net.minecraft.server.v1_11_R1.*;
 
 import java.util.List;
 
@@ -53,30 +53,30 @@ public class ChunkProviderServerProxy extends ChunkProviderServer implements Pro
 
     @Deprecated
     public ChunkPosition _findNearestMapFeature(World world, String s, BlockPosition pos) {
-        return new ChunkPosition(base.a(world, s, pos));
+        return new ChunkPosition(base.a(world, s, pos, false));
     }
 
     public BlockPosition findNearestMapFeature(World world, String s, BlockPosition pos) {
-        return new BlockPosition(base.a(world, s, pos));
+        return new BlockPosition(base.a(world, s, pos, false));
     }
 
     @Deprecated
     public ChunkPosition findNearestMapFeature(World world, String s, int i, int j, int k) {
-        return new ChunkPosition(base.a(world, s, new BlockPosition(i, j, k)));
+        return new ChunkPosition(base.a(world, s, new BlockPosition(i, j, k), false));
     }
 
     @Deprecated
     public ChunkPosition super_findNearestMapFeature(World world, String s, int i, int j, int k) {
-        return new ChunkPosition(super.a(world, s, new BlockPosition(i, j, k)));
+        return new ChunkPosition(super.a(world, s, new BlockPosition(i, j, k), false));
     }
 
     @Deprecated
     public ChunkPosition _super_findNearestMapFeature(World world, String s, BlockPosition pos) {
-        return new ChunkPosition(super.a(world, s, pos));
+        return new ChunkPosition(super.a(world, s, pos, false));
     }
 
     public BlockPosition super_findNearestMapFeature(World world, String s, BlockPosition pos) {
-        return new BlockPosition(super.a(world, s, pos));
+        return new BlockPosition(super.a(world, s, pos, false));
     }
 
     public void getChunkAt(IChunkProvider arg0, int arg1, int arg2) {
@@ -148,13 +148,8 @@ public class ChunkProviderServerProxy extends ChunkProviderServer implements Pro
         return super.getOrLoadChunkAt(x, z);
     }
 
-    @Override
-    public boolean isChunkLoaded(int x, int z) {
-        return base.isChunkLoaded(x, z);
-    }
-
     public boolean super_isChunkLoaded(int x, int z) {
-        return super.isChunkLoaded(x, z);
+        return super.isLoaded(x, z);
     }
 
     @Override
@@ -166,14 +161,10 @@ public class ChunkProviderServerProxy extends ChunkProviderServer implements Pro
         return super.loadChunk(x, z);
     }
 
-    @Override
-    public void queueUnload(int x, int z) {
-        base.queueUnload(x, z);
-    }
-
-    public void super_queueUnload(int x, int z) {
+    // TODO: is this function stil in use?
+    /*public void super_queueUnload(int x, int z) {
         super.queueUnload(x, z);
-    }
+    }*/
 
     public void recreateStructures(Chunk chunk, int x, int z) {
         base.chunkGenerator.recreateStructures(chunk, x, z);

@@ -8,9 +8,9 @@ import com.bergerkiller.bukkit.common.utils.CommonUtil;
 import com.bergerkiller.bukkit.common.utils.LogicUtil;
 import com.bergerkiller.bukkit.common.utils.PlayerUtil;
 import com.mojang.authlib.GameProfile;
-import net.minecraft.server.v1_9_R1.EntityItem;
-import net.minecraft.server.v1_9_R1.EnumDirection;
-import net.minecraft.server.v1_9_R1.ItemStack;
+import net.minecraft.server.v1_11_R1.EntityItem;
+import net.minecraft.server.v1_11_R1.EnumDirection;
+import net.minecraft.server.v1_11_R1.ItemStack;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -54,13 +54,14 @@ public abstract class PropertyConverter<T> extends BasicConverter<T> {
                 return mat;
             }
 
+            // TODO check .i() 
             // Ask additional getters
             if (value instanceof org.bukkit.block.Block) {
                 return ((org.bukkit.block.Block) value).getType();
             } else if (value instanceof ItemStack) {
-                return Material.getMaterial(((ItemStack) value).c);
+                return Material.getMaterial(((ItemStack) value).i());
             } else if (value instanceof EntityItem) {
-                return Material.getMaterial(((EntityItem) value).getItemStack().c);
+                return Material.getMaterial(((EntityItem) value).getItemStack().i());
             } else if (value instanceof org.bukkit.entity.Item) {
                 return ((org.bukkit.entity.Item) value).getItemStack().getType();
             } else if (value instanceof org.bukkit.inventory.ItemStack) {

@@ -3,9 +3,9 @@ package com.bergerkiller.bukkit.common.controller;
 import com.bergerkiller.bukkit.common.entity.nms.NMSEntityHook;
 import com.bergerkiller.bukkit.common.internal.CommonNMS;
 import com.bergerkiller.bukkit.common.reflection.classes.EntityRef;
-import net.minecraft.server.v1_9_R1.DamageSource;
-import net.minecraft.server.v1_9_R1.Entity;
-import net.minecraft.server.v1_9_R1.EnumHand;
+import net.minecraft.server.v1_11_R1.DamageSource;
+import net.minecraft.server.v1_11_R1.Entity;
+import net.minecraft.server.v1_11_R1.EnumHand;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MainHand;
@@ -40,13 +40,15 @@ public final class DefaultEntityController extends EntityController {
         }
     }
 
+    //TODO fix return
     @Override
     public boolean onInteractBy(HumanEntity interacter, ItemStack is, MainHand hand) {
         final Object handle = entity.getHandle();
         if (handle instanceof NMSEntityHook) {
             return super.onInteractBy(interacter, is, hand);
         } else {
-            return ((Entity) handle).a(CommonNMS.getNative(interacter), CommonNMS.getNative(interacter).getItemInMainHand(), EnumHand.MAIN_HAND);
+            return false;
+            //return ((Entity) handle).(CommonNMS.getNative(interacter), CommonNMS.getNative(interacter).getItemInMainHand(), EnumHand.MAIN_HAND);
         }
     }
 
@@ -84,7 +86,7 @@ public final class DefaultEntityController extends EntityController {
         if (handle instanceof NMSEntityHook) {
             ((NMSEntityHook) handle).super_g(dx, dy, dz);
         } else {
-            ((Entity) handle).g(dx, dy, dz);
+            ((Entity) handle).c(dx, dy, dz);
         }
     }
 
@@ -94,7 +96,7 @@ public final class DefaultEntityController extends EntityController {
         if (handle instanceof NMSEntityHook) {
             ((NMSEntityHook) handle).super_move(dx, dy, dz);
         } else {
-            ((Entity) handle).move(dx, dy, dz);
+            ((Entity) handle).f(dx, dy, dz);
         }
     }
 }

@@ -2,7 +2,7 @@ package com.bergerkiller.bukkit.common.controller;
 
 import java.util.List;
 
-import net.minecraft.server.v1_9_R1.*;
+import net.minecraft.server.v1_11_R1.*;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.HumanEntity;
@@ -173,7 +173,7 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
             final double oldDx = dx;
             final double oldDy = dy;
             final double oldDz = dz;
-            AxisAlignedBB axisalignedbb = handle.getBoundingBox().c(0, 0, 0);
+            AxisAlignedBB axisalignedbb = handle.getBoundingBox().d(0, 0, 0);
             List<AxisAlignedBB> list = EntityControllerCollisionHelper.getCollisions(this, handle.getBoundingBox().a(dx, dy, dz));
 
             // Collision testing using Y
@@ -181,7 +181,7 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
                 dy = aabb.b(handle.getBoundingBox(), dy);
             }
             addToBoundingBox(handle, 0.0, dy, 0.0);
-            if (!handle.aT() && oldDy != dy) {
+            if (!handle.br() && oldDy != dy) {
                 dx = dy = dz = 0.0;
             }
             boolean isOnGround = handle.onGround || oldDy != dy && oldDy < 0.0;
@@ -191,7 +191,7 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
                 dx = aabb.a(handle.getBoundingBox(), dx);
             }
             addToBoundingBox(handle, dx, 0.0, 0.0);
-            if (!handle.aT() && oldDx != dx) {
+            if (!handle.br() && oldDx != dx) {
                 dx = dy = dz = 0.0;
             }
 
@@ -200,7 +200,7 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
                 dz = aabb.c(handle.getBoundingBox(), dz);
             }
             addToBoundingBox(handle, 0.0, 0.0, dz);
-            if (!handle.aT() && oldDz != dz) {
+            if (!handle.br() && oldDz != dz) {
                 dx = dy = dz = 0.0;
             }
 
@@ -215,7 +215,7 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
                 dy = (double) handle.P;
                 dz = oldDz;
 
-                AxisAlignedBB axisalignedbb1 = handle.getBoundingBox().c(0, 0, 0);
+                AxisAlignedBB axisalignedbb1 = handle.getBoundingBox().d(0, 0, 0);
                 addToBoundingBox(handle, axisalignedbb);
 
                 list = EntityControllerCollisionHelper.getCollisions(this, handle.getBoundingBox().a(oldDx, dy, oldDz));
@@ -225,7 +225,7 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
                     dy = aabb.b(handle.getBoundingBox(), dy);
                 }
                 addToBoundingBox(handle, 0.0, dy, 0.0);
-                if (!handle.aT() && oldDy != dy) {
+                if (!handle.br() && oldDy != dy) {
                     dx = dy = dz = 0.0;
                 }
 
@@ -234,7 +234,7 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
                     dx = aabb.a(handle.getBoundingBox(), dx);
                 }
                 addToBoundingBox(handle, dx, 0.0, 0.0);
-                if (!handle.aT() && oldDx != dx) {
+                if (!handle.br() && oldDx != dx) {
                     dx = dy = dz = 0.0;
                 }
 
@@ -243,11 +243,11 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
                     dz = aabb.c(handle.getBoundingBox(), dz);
                 }
                 addToBoundingBox(handle, 0.0, 0.0, dz);
-                if (!handle.aT() && oldDz != dz) {
+                if (!handle.br() && oldDz != dz) {
                     dx = dy = dz = 0.0;
                 }
 
-                if (!handle.aT() && oldDy != dy) {
+                if (!handle.br() && oldDy != dy) {
                     dx = dy = dz = 0.0;
                 } else {
                     dy = (double) -handle.P;
@@ -348,7 +348,7 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
         EntityRef.updateBlockCollision(handle);
 
         // Fire tick calculation (check using block collision)
-        final boolean isInWater = handle.ah(); // In water or raining
+        final boolean isInWater = handle.isInWater(); // In water or raining
         if (handle.world.a(handle.getBoundingBox().shrink(0.001), Material.FIRE, handle) || (handle.world.a(handle.getBoundingBox().shrink(0.001), Material.LAVA, handle))) {
             onBurnDamage(1);
             if (!isInWater) {
@@ -363,16 +363,16 @@ public class EntityController<T extends CommonEntity<?>> extends CommonEntityCon
                 }
             }
         } else if (handle.fireTicks <= 0) {
-            handle.fireTicks = -handle.maxFireTicks;
+            handle.fireTicks = -handle.getMaxFireTicks();
         }
         if (isInWater && handle.fireTicks > 0) {
             entity.makeRandomSound(Sound.BLOCK_FIRE_EXTINGUISH, 0.7f, 1.6f);
-            handle.fireTicks = -handle.maxFireTicks;
+            handle.fireTicks = -handle.getMaxFireTicks();
         }
     }
 
     public void addToBoundingBox(Entity ent, double x, double y, double z) {
-        ent.a(ent.getBoundingBox().c(x, y, z));
+        ent.a(ent.getBoundingBox().d(x, y, z));
     }
 
     private void addToBoundingBox(Entity handle, AxisAlignedBB axisalignedbb) {

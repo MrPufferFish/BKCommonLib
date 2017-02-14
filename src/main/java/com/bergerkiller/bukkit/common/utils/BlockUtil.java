@@ -28,7 +28,7 @@ import com.bergerkiller.bukkit.common.reflection.classes.BlockStateRef;
 import com.bergerkiller.bukkit.common.reflection.classes.TileEntityRef;
 import com.bergerkiller.bukkit.common.reflection.classes.WorldRef;
 
-import net.minecraft.server.v1_9_R1.BlockPosition;
+import net.minecraft.server.v1_11_R1.BlockPosition;
 
 /**
  * Multiple Block utilities you can use to manipulate blocks and get block
@@ -368,7 +368,8 @@ public class BlockUtil extends MaterialUtil {
      * is no caller)
      */
     public static void applyPhysics(org.bukkit.block.Block block, Material callerType) {
-        CommonNMS.getNative(block.getWorld()).applyPhysics(new BlockPosition(block.getX(), block.getY(), block.getZ()), CommonNMS.getBlock(callerType));
+        // TODO: check if boolean is right
+        CommonNMS.getNative(block.getWorld()).applyPhysics(new BlockPosition(block.getX(), block.getY(), block.getZ()), CommonNMS.getBlock(callerType), false);
     }
 
     /**

@@ -15,8 +15,8 @@ import com.bergerkiller.bukkit.common.utils.CommonUtil;
 import com.bergerkiller.bukkit.common.utils.MaterialUtil;
 import com.bergerkiller.bukkit.common.utils.MathUtil;
 
-import net.minecraft.server.v1_9_R1.EntityMinecartAbstract;
-import net.minecraft.server.v1_9_R1.EntityMinecartRideable;
+import net.minecraft.server.v1_11_R1.EntityMinecartAbstract;
+import net.minecraft.server.v1_11_R1.EntityMinecartRideable;
 
 /**
  * An abstract implementation for all Minecarts
@@ -227,6 +227,6 @@ public abstract class CommonMinecart<T extends Minecart> extends CommonEntity<T>
      * (not a sloped rail)
      */
     public Vector getSlopedPosition(double x, double y, double z) {
-        return Conversion.toVector.convert(getHandle(EntityMinecartAbstract.class).k(x, y, z));
+        return Conversion.toVector.convert(getHandle(EntityMinecartAbstract.class).j(x, y, z));
     }
 }

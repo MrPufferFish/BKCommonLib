@@ -5,9 +5,9 @@ import com.bergerkiller.bukkit.common.internal.CommonNMS;
 import com.bergerkiller.bukkit.common.reflection.classes.EntityHumanRef;
 import com.bergerkiller.bukkit.common.reflection.classes.EntityRef;
 import com.bergerkiller.bukkit.common.wrappers.PlayerAbilities;
-import net.minecraft.server.v1_9_R1.DamageSource;
-import net.minecraft.server.v1_9_R1.Explosion;
-import net.minecraft.server.v1_9_R1.World;
+import net.minecraft.server.v1_11_R1.DamageSource;
+import net.minecraft.server.v1_11_R1.Explosion;
+import net.minecraft.server.v1_11_R1.World;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -311,7 +311,8 @@ public class EntityPropertyUtil extends EntityGroupingUtil {
      * @param entity to get it for
      * @return entity maximum portal cooldown ticks
      */
+    // TODO: wrong return value
     public static int getPortalCooldownMaximum(Entity entity) {
-        return CommonNMS.getNative(entity).aC();
+        return CommonNMS.getNative(entity).portalCooldown;
     }
 }

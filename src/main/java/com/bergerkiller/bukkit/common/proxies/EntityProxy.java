@@ -322,28 +322,89 @@ public class EntityProxy<T extends Entity> extends ProxyBase<T> implements Entit
         base.setCustomNameVisible(arg0);
     }
 
-	@Override
-	public Spigot spigot() {
-		return base.spigot();
-	}
+    @Override
+    public Spigot spigot() {
+        return base.spigot();
+    }
 
-	@Override
-	public boolean isGlowing() {
-		return base.isGlowing();
-	}
+    @Override
+    public boolean isGlowing() {
+        return base.isGlowing();
+    }
 
-	@Override
-	public void setGlowing(boolean arg0) {
-		base.setGlowing(arg0);
-	}
-    
+    @Override
+    public void setGlowing(boolean arg0) {
+        base.setGlowing(arg0);
+    }
+
+    @Override
     public boolean isInvulnerable() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return base.isInvulnerable();
     }
 
+    @Override
     public void setInvulnerable(boolean invulnerable) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        base.setInvulnerable(invulnerable);
     }
 
+    @Override
+    public List<Entity> getPassengers() {
+        return base.getPassengers();
+    }
+
+    @Override
+    public boolean addPassenger(Entity entity) {
+        return base.addPassenger(entity);
+    }
+
+    @Override
+    public boolean removePassenger(Entity entity) {
+        return base.removePassenger(entity);
+    }
+
+    @Override
+    public boolean isSilent() {
+        return base.isSilent();
+    }
+
+    @Override
+    public void setSilent(boolean bln) {
+        base.setSilent(bln);
+    }
+
+    @Override
+    public boolean hasGravity() {
+        return base.hasGravity();
+    }
+
+    @Override
+    public void setGravity(boolean bln) {
+        base.setGravity(bln);
+    }
+
+    @Override
+    public int getPortalCooldown() {
+        return base.getPortalCooldown();
+    }
+
+    @Override
+    public void setPortalCooldown(int i) {
+        base.setPortalCooldown(i);
+    }
+
+    @Override
+    public Set<String> getScoreboardTags() {
+        return base.getScoreboardTags();
+    }
+
+    @Override
+    public boolean addScoreboardTag(String string) {
+        return base.addScoreboardTag(string);
+    }
+
+    @Override
+    public boolean removeScoreboardTag(String string) {
+        return base.removeScoreboardTag(string);
+    }
 
 }

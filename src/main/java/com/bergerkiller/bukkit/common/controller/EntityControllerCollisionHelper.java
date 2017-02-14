@@ -12,10 +12,11 @@ import com.bergerkiller.bukkit.common.internal.CommonNMS;
 import com.bergerkiller.bukkit.common.utils.FaceUtil;
 import com.bergerkiller.bukkit.common.utils.MathUtil;
 
-import net.minecraft.server.v1_9_R1.AxisAlignedBB;
-import net.minecraft.server.v1_9_R1.Block;
-import net.minecraft.server.v1_9_R1.BlockPosition;
-import net.minecraft.server.v1_9_R1.Entity;
+import net.minecraft.server.v1_11_R1.AxisAlignedBB;
+import net.minecraft.server.v1_11_R1.Block;
+import net.minecraft.server.v1_11_R1.BlockPosition;
+import net.minecraft.server.v1_11_R1.Entity;
+import net.minecraft.server.v1_11_R1.IBlockData;
 
 /**
  * Class that deals with AABB-collision resolving for Entity Controllers. This
@@ -53,7 +54,8 @@ class EntityControllerCollisionHelper {
                     for (y = ymin - 1; y < ymax; ++y) {
                         Block block = handle.world.getChunkAtWorldCoords(new BlockPosition(x, y, z)).getBlockData(new BlockPosition(x, y, z)).getBlock();
                         if (block != null) {
-                            block.a(handle.world.getChunkAtWorldCoords(new BlockPosition(x, y, z)).getBlockData(new BlockPosition(x, y, z)), handle.world, new BlockPosition(x, y, z), bounds, collisionBuffer, handle);
+                            // @TODO is boolean right?
+                            block.a(handle.world.getChunkAtWorldCoords(new BlockPosition(x, y, z)).getBlockData(new BlockPosition(x, y, z)), handle.world, new BlockPosition(x, y, z), bounds, collisionBuffer, handle, false);
                         }
                     }
                 }
@@ -99,7 +101,7 @@ class EntityControllerCollisionHelper {
 
             entityBounds = collider.getBoundingBox();
             // Entity collision event after the null/inBounds check
-            if (entityBounds != null && entityBounds.b(bounds) && controller.onEntityCollision(Conversion.toEntity.convert(collider))) {
+            if (entityBounds != null && entityBounds.c(bounds) && controller.onEntityCollision(Conversion.toEntity.convert(collider))) {
                 collisionBuffer.add(entityBounds);
             }
         }
